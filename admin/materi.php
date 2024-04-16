@@ -81,47 +81,31 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4">Materi</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active" style="color: white;">Dashboard</li>
+                        <li class="breadcrumb-item active" style="color: white;">Materi</li>
                     </ol>
                     <div class="row">
-                        <div class="col-md-3 col-sm-4 mb-3">
-                            <div class="card bg-primary text-white">
-                                <img src="img/materi.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4>Materi</h4>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Launch demo modal
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Folder</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="./materi.php" class="card-link text-white">Lihat</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-4 mb-3">
-                            <div class="card bg-primary text-white">
-                                <img src="img/video.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4>Video</h4>
+                                    <div class="modal-body">
+                                        ...
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="animasi.html" class="card-link text-white">Lihat</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-4 mb-3">
-                            <div class="card bg-primary text-white">
-                                <img src="img/latihan.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4>Latihan</h4>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="charts.html" class="card-link text-white">Lihat</a>
                                 </div>
                             </div>
                         </div>
