@@ -1,14 +1,6 @@
 [
   {
-    "path": "./img/",
-    "namafile": "css.jpg"
-  },
-  {
-    "path": "./img/",
-    "namafile": "html.jpg"
-  },
-  {
-    "path": "./img/",
-    "namafile": "javascript.jpg"
+    "path": "./Materi/Pertemuan_2/",
+    "namafile": "test.pdf"
   }
 ]

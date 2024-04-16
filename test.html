@@ -21,7 +21,7 @@
         id="carouselExampleIndicators"
         class="carousel slide"
         data-ride="carousel"
-        data-interval="600000"
+        data-interval="false"
       >
         <ol class="carousel-indicators" id="carousel-indicators"></ol>
         <div class="carousel-inner" id="carousel-inner"></div>
@@ -46,55 +46,81 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+      <a
+        id="btnLatihan"
+        class="btn btn-primary mt-3"
+        style="display: none"
+        href="latihan1.html"
+      >
+        Mulai Latihan
+      </a>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script>
       $(document).ready(function () {
-        $.getJSON("data.json", function (data) {
-          $.each(data, function (index, image) {
-            var indicator = $(
-              '<li data-target="#carouselExampleIndicators" data-slide-to="' +
-                index +
-                '"></li>'
-            );
-            $("#carousel-indicators").append(indicator);
+        var countDownDate = getCookie("countDownDate");
+        if (!countDownDate) {
+          countDownDate = new Date().getTime() + 600000; // 10 minutes from now
+          setCookie("countDownDate", countDownDate, 1); // Cookie expires in 1 day
+        } else {
+          countDownDate = parseInt(countDownDate);
+        }
 
-            var item = $(
-              '<div class="carousel-item"><img src="' +
-                image.path +
-                image.namafile +
-                '" class="d-block w-100" alt="' +
-                image.namafile +
-                '"></div>'
-            );
-            if (index === 0) {
-              item.addClass("active");
-              indicator.addClass("active");
-            }
-            $("#carousel-inner").append(item);
+        function convertPDFToJPG() {
+          $.getJSON("data.json", function (data) {
+            $.each(data, function (index, image) {
+              var indicator = $(
+                '<li data-target="#carouselExampleIndicators" data-slide-to="' +
+                  index +
+                  '"></li>'
+              );
+              $("#carousel-indicators").append(indicator);
+
+              var item = $(
+                '<div class="carousel-item"><img src="' +
+                  image.path +
+                  image.namafile +
+                  '" class="d-block w-100" alt="' +
+                  image.namafile +
+                  '"></div>'
+              );
+              if (index === 0) {
+                item.addClass("active");
+                indicator.addClass("active");
+              }
+              $("#carousel-inner").append(item);
+            });
           });
+        }
 
-          // Countdown timer
-          var countDownDate = new Date().getTime() + 600000; // 10 minutes from now
-          var x = setInterval(function () {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-            var minutes = Math.floor(
-              (distance % (1000 * 60 * 60)) / (1000 * 60)
-            );
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            console.log(seconds);
-            $("#countdown").text(
-              "Time left: " + minutes + "m " + seconds + "s "
-            );
-            if (distance < 0) {
-              clearInterval(x);
-              $("#countdown").text("EXPIRED");
+        function setCookie(cname, cvalue, exdays) {
+          var d = new Date();
+          d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+          var expires = "expires=" + d.toUTCString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(";");
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == " ") {
+              c = c.substring(1);
             }
-          }, 1000);
-        });
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
+
+        // Call the conversion function
+        convertPDFToJPG();
       });
     </script>
   </body>
